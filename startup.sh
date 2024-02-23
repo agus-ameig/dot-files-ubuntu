@@ -25,6 +25,36 @@ fi
 
 set -e
 
+# Check if Zsh is installed
+if ! command -v zsh &>/dev/null; then
+    echo "Zsh is not installed. Installing..."
+    # Install Zsh
+    sudo apt install -y zsh
+    # Set Zsh as the default shell
+    chsh -s "$(command -v zsh)"
+else
+    echo "Zsh is already installed."
+fi
+
+# Check if Oh My Zsh is installed
+if [ ! -d "$HOME/.oh-my-zsh" ]; then
+    echo "Oh My Zsh is not installed. Installing..."
+    # Install Oh My Zsh (using curl)
+    sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+else
+    echo "Oh My Zsh is already installed."
+fi
+
+# Check if Starship is installed
+if ! command -v starship  &>/dev/null; then
+    echo "Starship is not installed. Installing..."
+    # Install Starship
+    sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- -y
+  else
+    echo "Starship is already installed."
+fi
+
+# Create config symlinks
 echo "Creating zshrc symlink..."
 ln -s $PWD/.zshrc ~/.zshrc
 source ~/.zshrc
