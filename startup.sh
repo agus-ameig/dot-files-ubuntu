@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 title=$(cat << "EOF"
  .d8888b.                     .d888 d8b               .d8888b.  888                     888
 d88P  Y88b                   d88P"  Y8P              d88P  Y88b 888                     888
@@ -57,7 +57,7 @@ fi
 # Create config symlinks
 echo "Creating zshrc symlink..."
 ln -s $PWD/.zshrc ~/.zshrc
-source ~/.zshrc
+zsh -c "source ~/.zshrc"
 
 echo "Creating tmux symlink..."
 ln -s $PWD/.tmux.conf ~/.tmux.conf
